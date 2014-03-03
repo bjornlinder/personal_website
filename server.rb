@@ -22,11 +22,12 @@ get '/blog/:article' do
 end
 
 get '/:path' do
-  @path=params[:path]
+  @path=params[:path].chomp('.html')
   @title=@path.gsub(/'-'/,' ').split.map(&:capitalize).join(' ')
-  begin
-    erb params[:path].to_sym, :layout => :layout
-  rescue Errno::ENOENT
-    erb :index
-  end 
+ begin
+    erb @path.to_sym, :layout => :layout
+ rescue Errno::ENOENT
+   erb :index
+ end 
 end
+
