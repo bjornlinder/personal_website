@@ -1,6 +1,6 @@
 require 'sinatra'
 #require_relative 'treasure-hunter'
-require 'pry'
+# require 'pry'
 
 set :views, File.dirname(__FILE__) + '/views'
 set :public_folder, File.dirname(__FILE__) + '/public'
