@@ -15,15 +15,17 @@ get '/blog/:article' do
   @blog_data["pre-work.html"] = ["Launch Academy: Reflection on Pre-Work", "On Feb 16, 2014"]
   @blog_data["first-post.html"] = ["First Blog Post", "Jan 1, 2014", "images/comic.gif"]
   @blog_data["launch-academy-week-1.html"] = ["Launch Academy : Week 1", "Feb 22, 2014", "images/sudo-sandwich.png"]
+  @blog_data["project-updates.html"] = ["Programming Updates - Sinatra & Other Projects
+", "Mar 3, 2014"]
   
   @text = format_text_html (content.to_s)
-
   erb :blog_post, :layout => :layout
 end
 
 get '/:path' do
   @path=params[:path].chomp('.html')
   @title=@path.gsub(/'-'/,' ').split.map(&:capitalize).join(' ')
+
  begin
     erb @path.to_sym, :layout => :layout
  rescue Errno::ENOENT

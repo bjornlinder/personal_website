@@ -14,7 +14,7 @@
 	
 	<div class="post post-page">
 		<%if @blog_data[@path].length > 2 %>
-			<div class="post-img picture"><%="<a href='/#{@blog_data[@path][2]}'"%> rel="image" title="Comic"><img src="/images/comic.gif" alt="" /><div class="image-overlay-zoom"></div></a></div>
+			<div class="post-img picture"><%="<a href='/#{@blog_data[@path][2]}'"%> rel="image" title="Comic"><%="<img src='/#{@blog_data[@path][2]}'"%> alt="" /><div class="image-overlay-zoom"></div></a></div>
 		<%end%>
 		<a href="#" class="post-icon standard"></a>
 		<div class="post-content">

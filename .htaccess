@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^(.*)$ http://bjorn-linder.herokuapp.com/index [L,R=301]
