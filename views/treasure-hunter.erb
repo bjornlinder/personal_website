@@ -1,0 +1,78 @@
+<style>	
+	
+	#game-grid {
+	height:450px;
+	width:450px;
+	border:5px #000000;
+	float:left;
+	}
+	#game-tile {
+	height: 100px;
+	width: 100px;
+	background-color: #7F9A65;
+	border: 5px solid #000000;
+	display: inline-block;
+	float: left;
+	}
+	#game-player {
+	background-image:url('prospector.jpg');
+	height: 100px;
+	width: 100px;
+	border: 5px solid #000000;
+	display: inline-block;
+	float: left;
+	}/*
+	file://localhost/Users/brucehlinder/Google%20Drive/Personal%20Site%20&%20Profile/bjornlinder/themeforest-2831437-centum-responsive-html-template/HTML/shortcodes.html
+	icons to use for buttons:
+	#button {
+		ico-circle-arrow-top
+		ico-circle-arrow-right
+		ico-circle-arrow-left
+		ico-
+		ico-spade
+		
+	}*/
+</style>
+
+<div class="container">
+	<div class="sixteen columns">
+	
+		<div id="page-title">
+			<h2>Treasure Hunter <span>/ A Game with no Winning, Losing, or Purpose</span></h2>
+			<div id="bolded-line"></div>
+		</div>
+
+	</div>
+</div>
+
+<div class="container">	
+	<div class="sixteen columns">
+		<div class="eight columns">
+			<div id="game-grid">
+			<%=game = Game.new%>
+	
+			<%for i in (0..game.width-1) do i
+				for k in (0..game.length-1) do k
+					if game.location[0] == i && game.location[1] == k %>
+						<div id="game-player"><img /></div>
+					<%else%>
+						<div id="game-tile"><img /></div>
+					<%end%>
+				<%end%>
+			<%end%>
+			</div>
+		</div>
+		<div class="seven columns">
+			<div id="user-interaction">
+				<%game.turn('input')%>
+				<form>
+					<input type="button" name="north">
+					<input type="button" name="south">
+					<input type="button" name="east">
+					<input type="button" name="west">
+					<input type="button" name="dig">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

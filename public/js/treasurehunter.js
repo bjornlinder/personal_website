@@ -1,14 +1,28 @@
-(function(a,b,c){var name=prompt("Hey there baby, what's your name?");
-var number=prompt("Yo girl, gimme your number. Cause uh, I lost mine.");
-    ;return name}
+//function() {var name=prompt("Hey there baby, what's your name?");
+//var number=prompt("Yo girl, gimme your number. Cause uh, I lost mine.");
+//     name}
 
-function()
-alert("Awesome! I'll call you sometime, k?");
-} else {
-	alert("That's the number for a suicide help hotline, isn't it?")
+//$('#game-grid').displayTile({
+ //   alert("Awesome! I'll call you sometime, k?");
+	//left: '-195px'
+    //});
+
+//$('#game-grid').html('<img src="http://i.imgur.com/8NArGWZ.gif" />')
+
+//tiles change color on hover
+
+$('#game-tile img').hover( function() {
+    this.src = 'http://i.imgur.com/nTj3Fxx.gif'
+}, function() {
+    this.src = 'http://i.imgur.com/90Mmdcm.png'
+})
+
+function result(output){
+    console.log(output);
 }
 
-$('#game').displayTile({
-    alert("Awesome! I'll call you sometime, k?");
-	//left: '-195px'
-});
+$('#result') ( function() {
+alert("Awesome! I'll call you sometime, k?");
+}, function() {
+    this.src = 'http://i.imgur.com/90Mmdcm.png'
+})
