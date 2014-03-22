@@ -26,7 +26,33 @@
 		</div>
 	</div>
 	
-	<!--This is where comments feature will go, when I have one-->
+	<%if @comments_enabled%>
+	<hr>
+	<h3>Comments</h3>
+	
+	<% @post_comments.each do |comment| %>
+	
+		<h5><%=	comment.name %></h5> 
+		<p><%= comment.body %></p>
+	
+	<% end %>
+
+	<form action="/comment" method="post">
+		<div>
+		    <label for="name">Your Name, or appropriate pseudonym</label>
+		    <input type="text" id="name" name="name" />
+		</div>
+		<div>
+		    <label for="comment">Leave a comment if you so wish</label>
+		    <input type="text" id="comment" name="comment" />
+		</div>
+		<div>
+		    <label for="message">Send a private message (optional)</label>
+		    <input type="text" id="message" name="message" />
+		</div>
+		<input type="submit" value="Submit" />
+	</form>
+	<%end%>
 	
 </div>
 </div>
