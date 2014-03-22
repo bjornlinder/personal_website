@@ -17,6 +17,12 @@ def populate level
   end
 end
 
+# function populate(items, level) {
+# 	if (level === 0) {
+# 		return items[Math.rand]
+# 	}
+# }
+
 #Treasure generation for the entire map is done here in the map initialization.
 #The game could also be coded to roll for treasure every time the user digs for it.
 def generate

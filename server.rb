@@ -1,8 +1,12 @@
 require 'sinatra'
 require_relative 'treasure-hunter'
+require 'sinatra/activerecord'
+require_relative 'environments'
 
 set :views, File.dirname(__FILE__) + '/views'
 set :public_folder, File.dirname(__FILE__) + '/public'
+
+@@games = {}
 
 get '/blog/:article' do
   @path = params[:article]
@@ -24,6 +28,10 @@ get '/blog/:article' do
   erb :blog_post, :layout => :layout
 end
 
+class Post < ActiveRecord::Base
+end
+
+
 get '/:path' do
   @path=params[:path].chomp('.html')
   @title=@path.gsub(/'-'/,' ').split.map(&:capitalize).join(' ')
@@ -37,4 +45,9 @@ end
 
 get '/' do
   erb :index
+end
+
+post '/treasure-hunter' do
+	#create grid in ruby, save grid in javascript
+	#@grid
 end

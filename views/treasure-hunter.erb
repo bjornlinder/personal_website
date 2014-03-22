@@ -64,15 +64,28 @@
 		</div>
 		<div class="seven columns">
 			<div id="user-interaction">
+				
 				<%game.turn('input')%>
-				<form>
+				<!-- <button onclick="north();">North</button>
+				<button onclick="south();">South</button>
+				<button onclick="east();">East</button>
+				<button onclick="west();">West</button>
+				<button onclick="dig();">Dig</button> -->
+
+				<button id = "north">North</button>
+				
+					<%game.move('north')%>
+					
+					
+				<!--<form>
 					<input type="button" name="north">
 					<input type="button" name="south">
 					<input type="button" name="east">
 					<input type="button" name="west">
 					<input type="button" name="dig">
-				</form>
+				</form>-->
 			</div>
+			<script src="js/treasurehunter.js"></script>
 		</div>
 	</div>
 </div>
