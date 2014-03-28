@@ -16,32 +16,33 @@ get '/blog/:article' do
   def format_text_html (text)
     text.gsub(/\'/, '&#39;').insert(0,"<p>").gsub("\n\n",'</p><p>')
   end
-
-  @blog_data = {}
-  @blog_data["pre-work.html"] = ["Launch Academy: Reflection on Pre-Work", "On Feb 16, 2014"]
-  @blog_data["first-post.html"] = ["First Blog Post", "Jan 1, 2014", "images/comic.gif"]
-  @blog_data["launch-academy-week-1.html"] = ["Launch Academy : Week 1", "Feb 22, 2014", "images/sudo-sandwich.png"]
-  @blog_data["project-updates.html"] = ["Programming Updates - Sinatra & Other Projects", "Mar 3, 2014"]
-  @blog_data["test-driven-development.html"] = ["Test Driven Development", "Mar 9, 2014"]
   
-	if @blog_data.has_key?(@path)
+	begin 
+		@post = Post.find_by(path: @path)
 	  content = File.read(File.join('public', @path.to_s))
 	  @text = format_text_html (content.to_s)
-		@comments_enabled = false
-		
-	else
-		@comments_enabled = true
-		post = Post.find_by(path: @path)
-		begin 
-		#	print "Testing path... path: " + @path + " blog data[path] " + @blog_data[@path]
-			@blog_data[@path] = [post.title, post.created_at]
-		rescue NoMethodError => b
-			redirect '/blog'
-		end
-		@post_comments = Comment.where(post_id = @postid).all
-		@postid = post.id
-		@text = post.body
+		@comments_enabled = @post.comments_enabled
+		@post_comments = Comment.where(post_id = @post.id).all
+	rescue ActiveRecord::RecordNotFound => b
+		redirect '/blog'
 	end
+	
+	# if Post.find(@path)
+	# 
+	# 	@comments_enabled = false
+	# 	
+	# else
+	# 	@comments_enabled = true
+	# 	post = Post.find_by(path: @path)
+	# 	begin 
+	# 	#	print "Testing path... path: " + @path + " blog data[path] " + @blog_data[@path]
+	# 		@blog_data[@path] = [post.title, post.created_at]
+	# 	rescue NoMethodError => b
+	# 		redirect '/blog'
+	# 	end
+	# 	@post_comments = Comment.where(post_id = @postid).all
+	# 	@postid = post.id
+	# end
   
   erb :blog_post, :layout => :layout
 end

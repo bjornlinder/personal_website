@@ -13,13 +13,13 @@
 <div class="twelve columns">
 	
 	<div class="post post-page">
-		<%if @blog_data[@path].length > 2 %>
-			<div class="post-img picture"><%="<a href='/#{@blog_data[@path][2]}'"%> rel="image" title="Comic"><%="<img src='/#{@blog_data[@path][2]}'"%> alt="" /><div class="image-overlay-zoom"></div></a></div>
+		<%if @post.media %>
+			<div class="post-img picture"><%="<a href='/#{@post.media}'"%> rel="image" title="Comic"><%="<img src='/#{@post.media}'"%> alt="" /><div class="image-overlay-zoom"></div></a></div>
 		<%end%>
 		<a href="#" class="post-icon standard"></a>
 		<div class="post-content">
-			<div class="post-title"><h2><a href="#"><%=@blog_data[@path][0]%></a></h2></div>
-			<div class="post-meta"><span><i class="mini-ico-calendar"></i>On <%=@blog_data[@path][1]%></span> <span><i class="mini-ico-user"></i>By <a href="#">Bjorn</a></span></div>
+			<div class="post-title"><h2><a href="#"><%=@post.title%></a></h2></div>
+			<div class="post-meta"><span><i class="mini-ico-calendar"></i>On <%=@post.date_created%></span> <span><i class="mini-ico-user"></i>By <a href="#">Bjorn</a></span></div>
 			<div class="post-description">
 				<%=@text%>
 			</div>

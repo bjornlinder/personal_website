@@ -36,3 +36,12 @@
 		Post.create(title: "Launch Academy : Week 1", path: "launch-academy-week-1.html", allow_comments: false, media: "images/sudo-sandwich.png", preview_media: "images/sudo-sandwich.png", date_created: Date.parse("Feb 22, 2014"))
 		Post.create(title: "Programming Updates - Sinatra & Other Projects", path: "project-updates.html", allow_comments: false, date_created: Date.parse("Mar 3, 2014"))
 		Post.create(title: "Test Driven Development", path: "test-driven-development.html", allow_comments: false, date_created: Date.parse("Mar 9, 2014"))
+		
+		
+
+	  @blog_data = {}
+	  @blog_data["pre-work.html"] = ["Launch Academy: Reflection on Pre-Work", "On Feb 16, 2014"]
+	  @blog_data["first-post.html"] = ["First Blog Post", "Jan 1, 2014", "images/comic.gif"]
+	  @blog_data["launch-academy-week-1.html"] = ["Launch Academy : Week 1", "Feb 22, 2014", "images/sudo-sandwich.png"]
+	  @blog_data["project-updates.html"] = ["Programming Updates - Sinatra & Other Projects", "Mar 3, 2014"]
+	  @blog_data["test-driven-development.html"] = ["Test Driven Development", "Mar 9, 2014"]

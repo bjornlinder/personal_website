@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20140322190932) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "path"
-  end
+		t.boolean  "allow_comments"	default: true
+		t.string	 "preview_media"
+		t.date		 "date_created"
 
 end
