@@ -52,8 +52,8 @@ get '/treasure-hunter' do
 	#@grid
 end
 
-post '/comment' do
-
+post '/blog/:post_id/comments' do
+	@post = Post.find(params["post_id"])
 	newComment = Comment.new({:name => params["name"],:body => params["comment"],:message => params["message"],:post_id  => @post.id})
 	  # newComment.name = params["name"]
 	  # newComment.comment = params["comment"]

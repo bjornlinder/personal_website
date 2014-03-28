@@ -37,7 +37,7 @@
 	
 	<% end %>
 
-	<form action="/comment" method="post">
+	<%="<form action= \"/blog/#{@post.id}/comments" %> method="post">
 		<div>
 		    <label for="name">Your Name, or appropriate pseudonym</label>
 		    <input type="text" id="name" name="name" />
@@ -50,6 +50,7 @@
 		    <label for="message">Send a private message (optional)</label>
 		    <input type="text" id="message" name="message" />
 		</div>
+	
 		<input type="submit" value="Submit" />
 	</form>
 	<%end%>
