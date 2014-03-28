@@ -45,3 +45,10 @@
 	  @blog_data["launch-academy-week-1.html"] = ["Launch Academy : Week 1", "Feb 22, 2014", "images/sudo-sandwich.png"]
 	  @blog_data["project-updates.html"] = ["Programming Updates - Sinatra & Other Projects", "Mar 3, 2014"]
 	  @blog_data["test-driven-development.html"] = ["Test Driven Development", "Mar 9, 2014"]
+		
+		
+		# Believe it or not, we're halfway through! Hopefully, you've learned a lot and we've helped you along the way.
+		# 
+		# What part of the program has been particularly eye opening? What is your favorite aspect of web development and software development so far?
+		# 
+		# Write a blog article about your breakable toy. Discuss why you chose it, what gets you excited, and where you envision you might be challenged technically. Feel free to share some of your user stories and/or wireframes as part of the article. Remember, the idea of reflection is to cement your learning and to share how quickly that learning is progressing with the world.

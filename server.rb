@@ -25,31 +25,11 @@ get '/blog/:article' do
 		@post_comments = Comment.where(post_id: @post.id).all
 	rescue ActiveRecord::RecordNotFound => b
 	rescue Errno::ENOENT => c
-		
 		redirect '/blog'
 	end
-	
-	# if Post.find(@path)
-	# 
-	# 	@comments_enabled = false
-	# 	
-	# else
-	# 	@comments_enabled = true
-	# 	post = Post.find_by(path: @path)
-	# 	begin 
-	# 	#	print "Testing path... path: " + @path + " blog data[path] " + @blog_data[@path]
-	# 		@blog_data[@path] = [post.title, post.created_at]
-	# 	rescue NoMethodError => b
-	# 		redirect '/blog'
-	# 	end
-	# 	@post_comments = Comment.where(post_id = @postid).all
-	# 	@postid = post.id
-	# end
   
   erb :blog_post, :layout => :layout
 end
-
-
 
 get '/:path' do
   @path=params[:path].chomp('.html')
@@ -73,12 +53,7 @@ get '/treasure-hunter' do
 end
 
 post '/comment' do
-	#   comment = 
-	#   @who_said_it = 
-	# @private_message = 
-	# puts @what_was_said
-	
-	#write to DB here...
+
 	newComment = Comment.new({:name => params["name"],:body => params["comment"],:message => params["message"]})
 	  # newComment.name = params["name"]
 	  # newComment.comment = params["comment"]
