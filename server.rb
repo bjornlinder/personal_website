@@ -53,7 +53,12 @@ get '/treasure-hunter' do
 end
 
 post '/blog/:post_id/comments' do
-	@post = Post.find(params["post_id"])
+	# def sanitized_data
+	# 	sanitize_sql_hash_for_assignment(params)
+	# 	#sanitized_params = select{|key,value| ["name","comment","message"].include?(key)}
+	# end
+
+	@post = Post.find(params[:post_id])
 	newComment = Comment.new({:name => params["name"],:body => params["comment"],:message => params["message"],:post_id  => @post.id})
 	  # newComment.name = params["name"]
 	  # newComment.comment = params["comment"]
