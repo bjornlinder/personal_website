@@ -3,6 +3,8 @@ require_relative 'treasure-hunter'
 require 'sinatra/activerecord'
 require_relative 'environments'
 require_relative 'blog'
+require_relative 'models/comment'
+require_relative 'models/post'
 
 set :views, File.dirname(__FILE__) + '/views'
 set :models, File.dirname(__FILE__) + '/models'
@@ -26,10 +28,16 @@ get '/blog/:article' do
 	  content = File.read(File.join('public', @path.to_s))
 	  @text = format_text_html (content.to_s)
 		@comments_enabled = false
+		
 	else
 		@comments_enabled = true
 		post = Post.find_by(path: @path)
-		@blog_data[@path] = [post.title, post.created_at]
+		begin 
+		#	print "Testing path... path: " + @path + " blog data[path] " + @blog_data[@path]
+			@blog_data[@path] = [post.title, post.created_at]
+		rescue NoMethodError => b
+			redirect '/blog'
+		end
 		@post_comments = Comment.where(post_id = @postid).all
 		@postid = post.id
 		@text = post.body
@@ -38,8 +46,6 @@ get '/blog/:article' do
   erb :blog_post, :layout => :layout
 end
 
-class Post < ActiveRecord::Base
-end
 
 
 get '/:path' do

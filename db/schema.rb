@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322190932) do
+ActiveRecord::Schema.define(version: 20140324223140) do
 
   create_table "comments", force: true do |t|
     t.string   "name",       null: false
@@ -22,12 +22,14 @@ ActiveRecord::Schema.define(version: 20140322190932) do
   end
 
   create_table "posts", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",        null: false
     t.string   "media"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "path"
+    t.boolean  "allow_comments", default: true
+    t.text     "preview_text"
   end
 
 end
