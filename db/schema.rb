@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140324223140) do
   end
 
   create_table "posts", force: true do |t|
-    t.string   "title",        null: false
+    t.string   "title",                         null: false
     t.string   "media"
     t.text     "body"
     t.datetime "created_at"

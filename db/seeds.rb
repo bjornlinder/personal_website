@@ -4,7 +4,7 @@ require 'csv'
 file = File.join(File.dirname(__FILE__), 'db/data/posts.csv')
 puts "Reading from file #{file}"
 
-CSV.foreach('data/posts.csv', :headers) do |row|
+CSV.foreach('data/posts.csv', headers: true) do |row|
 	post_attr = { 
 		title: row["title"],
 		path: row["path"], 
