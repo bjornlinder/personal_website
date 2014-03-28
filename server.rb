@@ -21,7 +21,7 @@ get '/blog/:article' do
 		@post = Post.find_by(path: @path)
 	  content = File.read(File.join('public', @path.to_s))
 	  @text = format_text_html (content.to_s)
-		@comments_enabled = @post.comments_enabled
+		#@comments_enabled = @post.comments_enabled
 		@post_comments = Comment.where(post_id = @post.id).all
 	rescue ActiveRecord::RecordNotFound => b
 		redirect '/blog'
