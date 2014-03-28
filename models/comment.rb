@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
 	belongs_to :post
-	validates :post, presence: true
-	validates :comment, presence: true
-
+	validates :post_id, presence: true
+	validates :body, presence: true
+	validates :name, presence: true
 end

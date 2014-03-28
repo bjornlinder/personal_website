@@ -54,7 +54,7 @@ end
 
 post '/comment' do
 
-	newComment = Comment.new({:name => params["name"],:body => params["comment"],:message => params["message"]})
+	newComment = Comment.new({:name => params["name"],:body => params["comment"],:message => params["message"],:post_id  => @post.id})
 	  # newComment.name = params["name"]
 	  # newComment.comment = params["comment"]
 	  # newComment.commenttext = params["message"]
