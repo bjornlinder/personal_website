@@ -1,5 +1,5 @@
 configure :development do
-  db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/HEROKU_POSTGRESQL_RED_URL')
+  db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
 
   ActiveRecord::Base.establish_connection(
     :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
