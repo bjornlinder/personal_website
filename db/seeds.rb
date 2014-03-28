@@ -1,5 +1,4 @@
 require 'csv'
-#require 'Date'
 
 file = File.join(File.dirname(__FILE__), 'data/posts.csv')
 puts "Reading from file #{file}"
@@ -12,7 +11,6 @@ CSV.foreach(file, headers: true) do |row|
 		allow_comments: row["allow_comments"],
 		media: row["media"],
 		preview_media: row["preview_media"],
-		preview_text: row["preview_text"]
 	}
 	
 	if Post.where(post_attr).count == 0
