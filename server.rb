@@ -59,7 +59,7 @@ post '/blog/:post_id/comments' do
 	end
 
 	@post = Post.find(params[:post_id])
-	newComment = Comment.new(sanitized_params({:name => params["name"],:body => params["comment"],:message => params["message"],:post_id  => @post.id}))
+	newComment = Comment.new(sanitized_data({:name => params["name"],:body => params["comment"],:message => params["message"],:post_id  => @post.id}))
 	  newComment.save
   redirect back
 end
