@@ -55,7 +55,11 @@ end
 post '/blog/:post_id/comments' do
 	def sanitized_data (params)
 		sanitized_params = params.select{|key,value| [:name,:body,:message,:post_id].include?(key)}
-		sanitized_params.each {|k,v| v.gsub!(/[;\*]/,'')}
+		sanitized_params.each do |k,v| 
+			if v.is_a?(String) 
+				v.gsub!(/[;\*]/,'')
+			end
+		end
 	end
 
 	@post = Post.find(params[:post_id])
