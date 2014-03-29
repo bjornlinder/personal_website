@@ -53,8 +53,8 @@ get '/treasure-hunter' do
 end
 
 post '/blog/:post_id/comments' do
-	def sanitized_data
-		sanitized_params = select{|key,value| [:name,:body,:message,:post_id].include?(key)}
+	def sanitized_data (params)
+		sanitized_params = params.select{|key,value| [:name,:body,:message,:post_id].include?(key)}
 		sanitized_params.each {|k,v| v.gsub!(/[;\*]/,'')}
 	end
 
