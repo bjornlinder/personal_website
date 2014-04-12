@@ -1,50 +1,4 @@
-//function() {var name=prompt("Hey there baby, what's your name?");
-//var number=prompt("Yo girl, gimme your number. Cause uh, I lost mine.");
-//     name}
-
-//$('#game-grid').displayTile({
- //   alert("Awesome! I'll call you sometime, k?");
-	//left: '-195px'
-    //});
-
-//$('#game-grid').html('<img src="http://i.imgur.com/8NArGWZ.gif" />')
-
-//tiles change color on hover
-
-// $('game-grid.game-tile').hover( function() {
-//     this.src = 'http://i.imgur.com/nTj3Fxx.gif'
-// }, function() {
-//     this.src = 'http://i.imgur.com/90Mmdcm.png'
-// })
-
-
-// $('#result') ( function() {
-// alert("Awesome! I'll call you sometime, k?");
-// }, function() {
-//     this.src = 'http://i.imgur.com/90Mmdcm.png'
-// })
-
-// $(document).ready(function(e) {
-// 	var $tile = $('#tile-items');
-// 	$('#tile-items').find('a').on('click', function(e) {
-// 		e.preventDefault();
-// 		
-// 		switch($(this).attr('href')) {
-// 			case 'button1':
-// 				do shit;
-// 				break;
-// 			case 'button2':
-// 				do other shit;
-// 				break;
-// 		}
-// 		
-// 		$('#move-button')
-// 		$('flower-description').load('fragments/lilies.html');
-// 	});
-// });
-
- playerLocation = [0,0,0]; // Current playerLocation
-// 
+playerLocation = [0,0,0];
 var validMoves = ["north","south","east","west","dig"];
 
 function move(dir) {
@@ -57,7 +11,6 @@ function move(dir) {
     alert("You have reached the edge of the world. You barely catch youself before falling off.");
     return;
   }
-     // >= @dimensions[0]||@playerLocation[0]<0||@playerLocation[1]<0||@playerLocation[1]>=@dimensions[1])
   if (dir == "dig") {
     dig(playerLocation[2]);
   }
@@ -116,10 +69,3 @@ function dig(depth) {
 }
 
 dug = {};
-// 
-// // var north = document.getElementById('north');
-// // north.onclick = North;
-// 
-// // var playerLocation = [0,0,0];
-// return false;
-
