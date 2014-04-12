@@ -1,3 +1,4 @@
+'why is stuff being called in params';
 playerLocation = [0,0,0];
 var validMoves = ["north","south","east","west","dig"];
 
