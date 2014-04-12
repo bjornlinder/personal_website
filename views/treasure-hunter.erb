@@ -6,7 +6,7 @@
 	border:5px #000000;
 	float:left;
 	}
-	#game-tile {
+	.game-row {
 	height: 100px;
 	width: 100px;
 	background-color: #7F9A65;
@@ -14,14 +14,19 @@
 	display: inline-block;
 	float: left;
 	}
-	#game-player {
+	.game-player {
 	background-image:url('prospector.jpg');
 	height: 100px;
 	width: 100px;
 	border: 5px solid #000000;
 	display: inline-block;
 	float: left;
-	}/*
+	}
+
+  h4 {
+    margin-top:30px;
+  }
+  /*
 	file://localhost/Users/brucehlinder/Google%20Drive/Personal%20Site%20&%20Profile/bjornlinder/themeforest-2831437-centum-responsive-html-template/HTML/shortcodes.html
 	icons to use for buttons:
 	#button {
@@ -49,42 +54,32 @@
 	<div class="sixteen columns">
 		<div class="eight columns">
 			<div id="game-grid">
-			<%=game = Game.new%>
 	
-			<%for i in (0..game.width-1) do i
-				for k in (0..game.length-1) do k
-					if game.location[0] == i && game.location[1] == k %>
-						<div id="game-player"><img /></div>
-					<%else%>
-						<div id="game-tile"><img /></div>
-					<%end%>
-				<%end%>
-			<%end%>
+			<% for i in (0..@game.width-1) do i %>
+        <%= "<div class = \"game-column #{i}\">" %>
+  				<% for k in (0..@game.length-1) do k %>
+						<%= "<div class=\"game-row #{k}\"><img /></div>" %>
+  				<% end %>
+          </div>
+  			<% end %>
 			</div>
 		</div>
 		<div class="seven columns">
 			<div id="user-interaction">
-				
-				<%game.turn('input')%>
-				<!-- <button onclick="north();">North</button>
-				<button onclick="south();">South</button>
-				<button onclick="east();">East</button>
-				<button onclick="west();">West</button>
-				<button onclick="dig();">Dig</button> -->
 
 				<button id = "north">North</button>
-				
-					<%game.move('north')%>
+  			<button id = "south">South</button>
+  			<button id = "west">West</button>
+  			<button id = "east">East</button>
+    		<button id = "dig">Dig</button>
 					
-					
-				<!--<form>
-					<input type="button" name="north">
-					<input type="button" name="south">
-					<input type="button" name="east">
-					<input type="button" name="west">
-					<input type="button" name="dig">
-				</form>-->
 			</div>
+      <h4>Result: <div id ='current-treasure'></div></h4>
+      <div id='treasure'>
+        <h4>Treasure collected:</h4>
+
+      </div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 			<script src="js/treasurehunter.js"></script>
 		</div>
 	</div>
