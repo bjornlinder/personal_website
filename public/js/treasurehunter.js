@@ -69,3 +69,4 @@ function dig(depth) {
 }
 
 dug = {};
+5;
