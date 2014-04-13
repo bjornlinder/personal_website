@@ -5,7 +5,7 @@ require_relative 'environments'
 require_relative 'blog'
 require_relative 'models/comment'
 require_relative 'models/post'
-
+require 'pry'
 set :views, File.dirname(__FILE__) + '/views'
 set :models, File.dirname(__FILE__) + '/models'
 set :public_folder, File.dirname(__FILE__) + '/public'
@@ -16,7 +16,7 @@ get '/:treasure-hunter' do
   erb "treasure-hunter".to_sym, layout: :layout
 end
 
-get '/dig' do  
+get '/dig/:d' do    
   treasure = Game.treasure(params['d'].to_i)  
   return treasure
 end

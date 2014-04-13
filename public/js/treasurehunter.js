@@ -1,4 +1,3 @@
-'why is stuff being called in params';
 playerLocation = [0,0,0];
 var validMoves = ["north","south","east","west","dig"];
 
@@ -57,8 +56,9 @@ function dig(depth) {
   else {
     var result;
     dug[playerLocation] = true;
-    $.get('/dig', function(data) { 
-      console.log("request returned" + data);
+    param = "/dig/" + depth;
+    $.get(param, function(data) {
+      console.log("request returned" + data + playerLocation);
       var result = data;
       var formatTreasure = "<li>" + result + "</li>"
       $('#current-treasure').text(data);
@@ -70,4 +70,3 @@ function dig(depth) {
 }
 
 dug = {};
-5;

@@ -1,17 +1,11 @@
-#Game Design - Treasure Hunter - by Bjorn Linder
-#A grid-based game of searching for hidden artifacts.
-
 class Game
-
-  attr_reader :width, :length
-
   def self.find_artifact (type) 
     artifacts = [
     '',
     '',
     ["Camembert","Parmesan","Cheddar","Wisconsin","Brie","Stinky","Blue","Gorgonzola","Goat","Gouda"],
-    ["human","neanderthal","sasquatch","velociraptor","human child","buffalo","alien"],
     ["Mayan","Greek","Chinese","Collector's Edition","Persian","Roman"],
+    ["human","neanderthal","sasquatch","velociraptor","human child","buffalo","alien"],
     ["Aaron the Aardvark","Commando Frog","Wile E. Coyote","killer rabbit","Chupacabra","Tobbits the Hobbit","Pikachu","Ling-Ling"]
     ]
     return artifacts[type][rand(artifacts[type].length)]
