@@ -52,3 +52,19 @@
 		# What part of the program has been particularly eye opening? What is your favorite aspect of web development and software development so far?
 		# 
 		# Write a blog article about your breakable toy. Discuss why you chose it, what gets you excited, and where you envision you might be challenged technically. Feel free to share some of your user stories and/or wireframes as part of the article. Remember, the idea of reflection is to cement your learning and to share how quickly that learning is progressing with the world.
+    
+
+    <div class="container">
+
+    	<div class="sixteen columns">
+    		<section class="slider">
+    			<div class="flexslider home">
+    				<ul class="slides">
+    					<li>
+    	<iframe src='http://embed.verite.co/timeline/?source=0AkedbV-iFTU_dDJpODluR1N6LUVzQW5VSVBEbHh5Ymc&font=Bevan-PotanoSans&maptype=toner&lang=en&height=650' width='100%' height='650' frameborder		='0'></iframe>
+    					</li>
+    				</ul>
+    			</div>
+    		</section>
+      	</div>
+    </div>
