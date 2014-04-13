@@ -22,21 +22,19 @@
 	display: inline-block;
 	float: left;
 	}
-
   h4 {
-    margin-top:30px;
+    margin-top:20px;
   }
-  /*
-	file://localhost/Users/brucehlinder/Google%20Drive/Personal%20Site%20&%20Profile/bjornlinder/themeforest-2831437-centum-responsive-html-template/HTML/shortcodes.html
-	icons to use for buttons:
-	#button {
-		ico-circle-arrow-top
-		ico-circle-arrow-right
-		ico-circle-arrow-left
-		ico-
-		ico-spade
-		
-	}*/
+  button {
+    margin-left:20px;
+    margin-right:20px;
+    margin-top:15px;
+    margin-bottom:10px;
+  }
+  .solo {
+    margin-left:107px;
+  }
+
 </style>
 
 <div class="container">
@@ -67,11 +65,11 @@
 		<div class="seven columns">
 			<div id="user-interaction">
 
-				<button id = "north">North</button>
-  			<button id = "south">South</button>
-  			<button id = "west">West</button>
-  			<button id = "east">East</button>
-    		<button id = "dig">Dig</button>
+				<div class='solo'><button id = "north"><i class="ico-circle-arrow-top"></i></button></div>
+				<button id = "west"><i class="ico-circle-arrow-left"></i></button>
+  			<button id = "dig"><i class="ico-spade"></i></button>
+				<button id = "east"><i class="ico-circle-arrow-right"></i></button>
+				<div class='solo'><button id = "south"><i class="ico-circle-arrow-down"></i></button></div>
 					
 			</div>
       <h4>Result: <div id ='current-treasure'></div></h4>
