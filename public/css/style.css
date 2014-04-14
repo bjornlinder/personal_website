@@ -8,7 +8,7 @@
 /* Import Section
 ====================================================================== */
 @import url("base.css");				/* Default Reset, Typography, Forms, etc. */ 
-
+@import url("skeleton.css");			/* 960 Grid + Media Query Layouts */ 
 
 
 /* =================================================================== */
