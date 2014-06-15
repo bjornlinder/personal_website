@@ -35,6 +35,7 @@ get '/blog/:article' do
 		@post_comments = Comment.where(post_id: @post.id).all
 	rescue ActiveRecord::RecordNotFound => b
 	rescue Errno::ENOENT => c
+    binding.pry
 		redirect '/blog'
 	end
   
