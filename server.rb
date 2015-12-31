@@ -35,7 +35,6 @@ get '/blog/:article' do
     @post_comments = Comment.where(post_id: @post.id).all
   rescue ActiveRecord::RecordNotFound => b
   rescue Errno::ENOENT => c
-    binding.pry
     redirect '/blog'
   end
 
@@ -48,12 +47,12 @@ get '/:path' do
   begin
     erb @path.to_sym, layout: :layout
   rescue Errno::ENOENT
-    erb :index
+    erb :fruit_wars
   end
 end
 
 get '/' do
-  erb :index
+  erb :fruit_wars
 end
 
 post '/blog/:post_id/comments' do
