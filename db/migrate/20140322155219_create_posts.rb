@@ -4,6 +4,11 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title, null: false
       t.string :media
       t.text :body
+      t.date :date_created
+      t.string :preview_media
+      t.text :preview_text
+      t.string :path
+
       t.timestamps
     end
    end

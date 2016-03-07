@@ -8,7 +8,6 @@ CSV.foreach(file, headers: true) do |row|
     title: row['title'],
     path: row['path'],
     date_created: Date.parse(row['date_created']),
-    allow_comments: row['allow_comments'],
     media: row['media'],
     preview_media: row['preview_media']
   }

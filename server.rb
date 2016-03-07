@@ -2,8 +2,6 @@ require 'sinatra'
 require_relative 'treasure-hunter'
 require 'sinatra/activerecord'
 require_relative 'environments'
-require_relative 'blog'
-require_relative 'models/comment'
 require_relative 'models/post'
 
 set :views, File.dirname(__FILE__) + '/views'
@@ -32,7 +30,6 @@ get '/blog/:article' do
     @post = Post.find_by(path: @path)
     content = File.read(File.join('public', @path.to_s))
     @text = format_text_html (content.to_s)
-    @post_comments = Comment.where(post_id: @post.id).all
   rescue ActiveRecord::RecordNotFound => b
   rescue Errno::ENOENT => c
     redirect '/blog'
@@ -53,18 +50,4 @@ end
 
 get '/' do
   erb :fruit_wars
-end
-
-post '/blog/:post_id/comments' do
-  def sanitized_data(params)
-    sanitized_params = params.select { |key, _value| [:name, :body, :message, :post_id].include?(key) }
-    sanitized_params.each do |_k, v|
-      v.gsub!(/[;\*]/, '') if v.is_a?(String)
-    end
-  end
-
-  @post = Post.find(params[:post_id])
-  newComment = Comment.new(sanitized_data({ name: params['name'], body: params['comment'], message: params['message'], post_id: @post.id }))
-  newComment.save
-  redirect back
 end
