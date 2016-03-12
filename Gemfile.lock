@@ -69,3 +69,6 @@ DEPENDENCIES
   sinatra-flash
   sinatra-redirect-with-flash
   tux
+
+BUNDLED WITH
+   1.10.6

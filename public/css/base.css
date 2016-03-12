@@ -20,7 +20,7 @@
 		display: block; }
 	body {
 		line-height: 1; }
-	ol, ul {
+	ol {
 		list-style: none; }
 	blockquote, q {
 		quotes: none; }
@@ -51,7 +51,7 @@
 		height: auto;
 		max-width: 100%;
 	}
-	
+
 	.columns.google-map img {
 		max-width: none;
 	}
@@ -60,7 +60,7 @@
 		height: auto;
 		display:block;
 	}
-	
+
 	img {
 		width: auto;
 		border: 0;
@@ -90,12 +90,12 @@
 		float: left;
 		margin: 0 15px 8px 0;
 	}
-	
+
 	.image-right {
 		float:right;
 		margin: 0 0 8px 15px;
 	}
-	
+
 	.image-right,
 	.image-left {
 		 padding: 4px;
@@ -112,7 +112,7 @@
 		font-family: Arial, sans-serif;
 		font-weight: bold;
 	}
-		
+
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
 	h1 { font-size: 28px; line-height: 50px; }
 	h2 { font-size: 28px; line-height: 30px; font-style: italic; font-family: "Brush Script MT", cursive;}
@@ -141,7 +141,6 @@
 /* #Lists
 ================================================== */
 	ul, ol { margin: 0; }
-	ul { list-style: none outside; }
 	ol { list-style: decimal; }
 	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
 	ul.square { list-style: square outside; }
@@ -160,7 +159,7 @@
 ================================================== */
 	fieldset {
 		margin-bottom: 20px; }
-	
+
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -185,7 +184,7 @@
 	input[type="email"]:focus,
 	textarea:focus {
 		border: 1px solid #ccc;
- 		color: #666; 
+ 		color: #666;
 		}
 	textarea {
 		min-height: 60px; }
@@ -193,7 +192,7 @@
 	legend {
 		display: block;
 		font-weight: bold;
-		font-size: 12px; 
+		font-size: 12px;
 		font-weight: normal;
 		margin-bottom: 8px;}
 	select {

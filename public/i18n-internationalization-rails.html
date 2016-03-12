@@ -1,0 +1,96 @@
+<ul class=bullets><h4>
+  <li><a href="#setup">Configuring i18n</a></li>
+  <li><a href="#yml-structure">yml file structure</a></li>
+  <li><a href="#shared-translations">Using Shared Translations</a></li>
+  <li><a href="#locale-navigation">Locale Navigation</a></li>
+</h4></ul>
+
+Recently I created the equestrian tours website <a href=http://wanderritt-brandenburg.de/>Wanderreitten</a> with Rails and I18n localization. I found myself frequently visiting StackOverflow in learning to use <a href=http://edgeguides.rubyonrails.org/i18n.html>I18n</a>, and will now share some lessons I learned in the process. The Wanderritt application itself is fairly simple, with no database or models and only three controllers (including ApplicationController). All text on the site is either shared for both English and German, in which case it’s likely in the html files, or is stored in the yml. I created the website to replace an existing site for the client, and copied the existing content directly into the yml with few modifications.
+
+<h3><a name=setup>Setup:</a></h3>
+
+<code>module Wanderreiten
+  class Application < Rails::Application
+    # All translations from config/locales/*.rb,yml are auto loaded.
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    # set default locale to German (if english is your default you can simply leave this line out)
+    config.i18n.default_locale = :de
+    config.i18n.enforce_available_locales = true
+  end
+end</code>
+
+<code>Rails.application.routes.draw do
+  scope '(:locale)', locale: /en|de/ do
+    root 'homes#index'
+    get 'pictures' => 'homes#pictures'
+    get 'impressum' => 'homes#impressum'
+    get 'termine' => 'termine#index'
+    get 'termine/:termin' => 'termine#show', as: 'termin'
+  end
+end</code>
+
+<h3><a name=yml-structure>.yml Structure</a></h3>
+
+Our default locale is now German; we can switch locales to English by prepending ‘/en’ to page paths.  By default our views will look for yml content in the file ‘locales/de.yml’, and in locale files matching the views. Hence we could store translations for homes#index either in locales/de.yml or in locales/homes/de.yml. I feel it makes sense for the yml file structure to match the application layout. The <a href=http://guides.rubyonrails.org/i18n.html#organization-of-locale-files>official guide</a> gives a nice picture of how you might organize your files. In either case we use the translations the same way:
+
+<code>de:
+  homes:
+    index:
+      title: Wanderritte Brandenburg- und Mecklenburg Vorpommern
+      horses: Die Pferde
+    company:
+      manager: Geschäftsführer
+      address: Sitz der Gesellschaft
+</code>
+
+In homes/index.html we render the text for horses with <code><%= t(‘.horses’) %></code> The period signifies we’re using the lazy lookup for views; we can refer to this text from other locations with the full i18n path: <code><%= t(‘homes.index.horses’) %></code>
+
+<h3><a name=shared-translations>Shared Yaml Translations</a></h3>
+
+I set up some custom logic for accessing tour details in the show pages (below). The reason for this is that this content is shared across the index and show pages for the tours (termine). There are many ways you could organize shared translations; I would do whatever you feel makes sense for your application.
+
+<code>class TermineController < ApplicationController
+  def show
+    @url = params[:termine]
+    @termin = I18n.t(‘termine’)[:rides][@url.to_sym]
+  end
+end</code>
+
+This allows me to easily access the shared yml content for the rides in termine#show (for example <a href=http://wanderritt-brandenburg.de/en/termine/seen_heide>Lakes and More</a>). '@termin[:title]' gives me the title for a ride, versus using the equivalent long form
+
+<code><%= t("termine.rides.#{params[:termin]}.title") %></code>
+
+<h3><a name=locale-navigation>Locale Navigation</a></h3>
+
+Switching locales:
+<code><% if I18n.locale == :de %>
+  <%= link_to url_for(locale: :en) do %>
+    <%= image_tag('eng-icon.gif', width: '16', height: '11', alt: 'English') %> English
+  <% end %>
+<% else %>
+  <%= link_to url_for(locale: :de) do %>
+    <%= image_tag('de-icon.gif', width: '16', height: '11', alt: 'English') %> Deutsch
+  <% end %>
+<% end %></code>
+
+Easy enough. Remember to add in the set_locale filter (below).
+
+<code>class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+  before_action :set_locale
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+  *def default_url_options(options = {})
+    { locale: I18n.locale }
+  end
+end</code>
+
+*I had all the other localization and routing set up, but found the localization still wasn't working properly. A user would go to the English version of the site, but all the links still pointed to the default locale (without /en). Solution: 'default_url_options' adds the locale to routes; I found that method <a href=http://rubysnippets.com/2013/07/04/internationalization-in-rails/>here</a>. Another option for automatically creating the correct links is the <a href=https://github.com/svenfuchs/routing-filter>gem 'routing-filter'</a>.
+
+That's it. I hope this writeup provides you with useful insight when working with i18n, and I look forward to reading your comments and questions. If you have more suggestions for further reading I'd be happy to add them to the resources listed below. Thanks for reading!
+
+<h3><a name=other-resources>Other resources:</a></h3>
+
+<li><a href=https://github.com/enriclluelles/route_translator>gem 'route_translator'</a> is useful if you want the page paths to be localized as well. For this application we would have the /tours path for the English version rather than /en/termine.</li>
+<li><a href=http://guides.rubyonrails.org/i18n.html#organization-of-locale-files>I18n Official Guide</a></li>
