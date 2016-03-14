@@ -19,6 +19,10 @@ get '/dig/:d' do
   return treasure
 end
 
+get '/fruit-wars' do
+  erb :fruit_wars, layout: :layout
+end
+
 get '/blog/:article' do
   @path = params[:article]
 
@@ -44,10 +48,10 @@ get '/:path' do
   begin
     erb @path.to_sym, layout: :layout
   rescue Errno::ENOENT
-    erb :fruit_wars
+    erb :blog
   end
 end
 
 get '/' do
-  erb :fruit_wars
+  erb :blog
 end

@@ -10,7 +10,9 @@
 @import url("base.css");				/* Default Reset, Typography, Forms, etc. */
 @import url("skeleton.css");			/* 960 Grid + Media Query Layouts */
 
-
+h2 {
+  text-align: left;
+}
 /* =================================================================== */
 /* Header
 ====================================================================== */
