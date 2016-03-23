@@ -25,7 +25,7 @@
         end_date: nextWeek,
         city: city,
         state: state,
-        limit: 13
+        limit: 11
       },
       success: function(data) {
         renderEvents(data);
