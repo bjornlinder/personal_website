@@ -72,10 +72,10 @@ function buildTitleHtml(title) {
 
 function buildDateHtml(date) {
   var html = '', options = { "month": "short", "day": "numeric" };
-  var formattedDate = date.format('mmmm m');
-  var formattedDay = date.format('dddd');
+  var formattedDate = formatDate(date, options);
+  var formattedDay = formatDate(date, { "weekday":"long" });
 
-  html += "<div class='em-date-container'><div class='em-date-weekday'>" + formattedDay + "</div><div class='em-date'>" + formattedDate + "</div></div>";
+  html += "<div class='em-date-container'><div class='em-date-weekday'>" + formattedDay + "</div><div class='em-date'>" + formattedDate + "</div></div>"
 
   return html;
 }
