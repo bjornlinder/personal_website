@@ -1,4 +1,5 @@
 configure :development do
+  require 'pry'
   db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///bjorn_linder_development')
 
   ActiveRecord::Base.establish_connection(

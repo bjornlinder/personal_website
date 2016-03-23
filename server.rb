@@ -3,6 +3,7 @@ require_relative 'treasure-hunter'
 require 'sinatra/activerecord'
 require_relative 'environments'
 require_relative 'models/post'
+require 'rest-client'
 
 set :views, File.dirname(__FILE__) + '/views'
 set :models, File.dirname(__FILE__) + '/models'
@@ -21,6 +22,23 @@ end
 
 get '/fruit-wars' do
   erb :fruit_wars, layout: :layout
+end
+
+get '/eventmy-api-demo' do
+  content_type :json
+
+  @events = RestClient.get 'http://www.eventmy.com/api/v1/events/search', {
+    params: {
+      token: ENV['EVENTMY_API_TOKEN'],
+      start_date: params[:start_date],
+      end_date: params[:end_date],
+      city: params[:city],
+      state: params[:state],
+      limit: 11
+    }
+  }
+
+  return @events
 end
 
 get '/blog/:article' do
@@ -42,6 +60,10 @@ get '/blog/:article' do
   erb :blog_post, layout: :layout
 end
 
+get '/' do
+  erb :blog
+end
+
 get '/:path' do
   @path = params[:path].chomp('.html')
   @title = @path.gsub(/'-'/, ' ').split.map(&:capitalize).join(' ')
@@ -50,8 +72,4 @@ get '/:path' do
   rescue Errno::ENOENT
     erb :blog
   end
-end
-
-get '/' do
-  erb :blog
 end
