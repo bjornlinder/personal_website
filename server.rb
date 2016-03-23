@@ -34,11 +34,9 @@ get '/eventmy-api-demo' do
       end_date: params[:end_date],
       city: params[:city],
       state: params[:state],
-      limit: 13
+      limit: 11
     }
   }
-  puts 'events found:'
-  puts @events
 
   return @events
 end

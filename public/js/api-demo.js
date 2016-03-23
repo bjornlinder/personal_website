@@ -4,8 +4,16 @@
   city = '', state = '';
   // Or for just one location:
   // var city = 'Minneapolis', state = 'MN';
-  nextWeek = formatDate(nextWeek.setDate(today.getDate() + 7));
-  today = formatDate(today);
+
+  nextWeek = nextWeek.setDate(today.getDate() + 7);
+  nextWeek = formatDate(nextWeek, "mm/dd/yyyy");
+  today = today.format("mm/dd/yyyy");
+
+  /*
+
+  The original code worked only for webkit (Firefox/Chrome) browsers. I've updated the date formatting to use cross-browser formatting provided here: http://blog.stevenlevithan.com/archives/date-time-format
+
+  */
 
   $(":button").click(function() {
     setCityState(this.id);
@@ -72,15 +80,17 @@ function buildTitleHtml(title) {
 
 function buildDateHtml(date) {
   var html = '', options = { "month": "short", "day": "numeric" };
-  var formattedDate = formatDate(date, options);
-  var formattedDay = formatDate(date, { "weekday":"long" });
+  date = Date(date);
+  var formattedDate = formatDate(date, 'd dddd');
+  var formattedDay = formatDate(date, 'mmmm');
 
-  html += "<div class='em-date-container'><div class='em-date-weekday'>" + formattedDay + "</div><div class='em-date'>" + formattedDate + "</div></div>"
+  html += "<div class='em-date-container'><div class='em-date-weekday'>" + formattedDay + "</div><div class='em-date'>" + formattedDate + "</div></div>";
 
   return html;
 }
 
-function formatDate(date, options) {
+function formatDate(date, format) {
   var d = new Date(date);
-  return d.toLocaleDateString('en', options);
+
+  return d.format(format);
 }
