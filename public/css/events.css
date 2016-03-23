@@ -1,0 +1,64 @@
+#em-events-container {
+  font-family: fantasy;
+}
+
+.em-event {
+  width: 550px;
+  height: 110px;
+  font-family: fantasy;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.em-event img {
+  height: 100%;
+  float: left;
+  display: inline;
+  width: 195px;
+}
+
+.em-title-container {
+  width: 334px;
+  padding: 4px 7px;
+  height: 100%;
+  background-color: #aaa;
+  float: left;
+  display: table;
+  text-align: center;
+}
+
+.em-event-title {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.em-event-title h3 {
+  color: #fff;
+  font-size: 17px;
+}
+
+.em-date-container {
+  width: 550px;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  font-size: 26px;
+
+  display: inline;
+  text-align: center;
+  float: left;
+}
+
+.em-date-weekday {
+  background-color: #37b6bd;
+  width: 195px;
+  float: left;
+  height: 100%;
+}
+
+.em-date {
+  background-color: #003333;
+  float: left;
+  height: 100%;
+  width: 350px;
+}
