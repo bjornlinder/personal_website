@@ -4050,17 +4050,6 @@ table.standard-table tr:hover td {background-color: #fafafa;}
 		display: block;
 	}
 
-	.js #nav,
-	.slide-caption,
-	.search-form,
-	#tagline,
-	.social-icons,
-	.widget,
-	.widget-alt,
-	#navigation ul li a {
-		display: none;
-	}
-
 	.social-icons.about {
 		display: block;
 		margin-bottom: 30px;
