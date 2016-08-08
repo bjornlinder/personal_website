@@ -11,6 +11,19 @@
   <div class="container">
     <div class="twelve columns">
     	<div class="post">
+        <% @post = Post.find_by(path: 'eventmy-is-growing.html') %>
+    		<div class="post-content">
+    			<div class="post-title"><h2><%= "<a href='blog/#{@post.path}'>#{@post.title}</a>" %></h2></div>
+    			<div class="post-meta"><span><i class="mini-ico-calendar"></i><%= @post.date_created %></span><span><i class="mini-ico-user"></i>By <a href="#">Bjorn Linder</a></span></div>
+      		<div class="post-description">
+            <p>EventMy has moved to the golden land of startups, networking, and tech events… that’s right, Boston. We’ll still be active in Southern Minnesota through @MankatoHub, and are working on launching new pages focusing on different regions and interests.</p>
+
+            <p>This July we started working with students living in Boston. I am very happy to welcome several new interns to the team. Our new team members are helping out with marketing, UI/UX design, social media, and engineering.</p>
+      		</div>
+        </div>
+    	</div>
+
+    	<div class="post">
     		<div class="post-content">
     			<div class="post-title"><h2><a href="blog/eventmy-api-demo.html">EventMy API Demo</a></h2></div>
     			<div class="post-meta"><span><i class="mini-ico-calendar"></i>On Mar 23, 2016</span><span><i class="mini-ico-user"></i>By <a href="#">Bjorn Linder</a></span></div>
