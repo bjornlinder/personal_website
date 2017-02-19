@@ -11,6 +11,28 @@
   <div class="container">
     <div class="twelve columns">
     	<div class="post">
+        <% @post = Post.find_by(path: 'natural-language-processing.html') %>
+    		<div class="post-content">
+    			<div class="post-title"><h2><%= "<a href='blog/#{@post.path}'>#{@post.title}</a>" %></h2></div>
+    			<div class="post-meta"><span><i class="mini-ico-calendar"></i><%= @post.date_created %></span><span><i class="mini-ico-user"></i>By <a href="#">Bjorn Linder</a></span></div>
+      		<div class="post-description">
+            <p>EventMy offers a variety of features at this point - event creation &amp; tracking, free API access, programmatically scheduling tweets to name the big ones. I felt the platform would not offer a truly personalized, unique, and valuable service to users without first improving our search capabilities and adding keyword search to that list. Not only that, but I’d use the keyword searching with user tags to provide personalized event recommendations. I looked at a number of potential solutions before finding that Postgres’s natural language processing capabilities would provide the functionality I needed to implement this.</p>
+      		</div>
+        </div>
+    	</div>
+      
+    	<div class="post">
+        <% @post = Post.find_by(path: 'event-personalization-eventmy.html') %>
+    		<div class="post-content">
+    			<div class="post-title"><h2><%= "<a href='blog/#{@post.path}'>#{@post.title}</a>" %></h2></div>
+    			<div class="post-meta"><span><i class="mini-ico-calendar"></i><%= @post.date_created %></span><span><i class="mini-ico-user"></i>By <a href="#">Bjorn Linder</a></span></div>
+      		<div class="post-description">
+            <p>Personalized event recommendations is a somewhat general phrase and I’d like to take some time to lift the veil and go into just what that means at EventMy. We aim to provide the best event discovery experience possible at EventMy, and key to that aim is giving users the most relevant results while minimizing the effort expended on their part. Personalized event recommendations are therefore core to our vision for EventMy and something we’ll always be looking to improve. The interface is designed as a calendar so users can easily filter events by the date(s) they are most interested in. Similarly, we want to prioritize local results; the closer an event is to a user the better. We also do more advanced event personalization in search results and offering event recommendations to users (e.g. weekly event emails). </p>
+      		</div>
+        </div>
+    	</div>
+      
+    	<div class="post">
         <% @post = Post.find_by(path: 'eventmy-is-growing.html') %>
     		<div class="post-content">
     			<div class="post-title"><h2><%= "<a href='blog/#{@post.path}'>#{@post.title}</a>" %></h2></div>

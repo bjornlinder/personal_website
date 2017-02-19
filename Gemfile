@@ -7,6 +7,7 @@ gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'
 gem 'rest-client'
+gem 'rake', '~> 11.2', '>= 11.2.2'
 
 group :development do
   gem 'tux'

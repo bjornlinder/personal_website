@@ -1,0 +1,27 @@
+EventMy offers a variety of features at this point - event creation &amp; tracking, free API access, programmatically scheduling tweets to name the big ones. I felt the platform would not offer a truly personalized, unique, and valuable service to users without first improving our search capabilities and adding keyword search to that list. Not only that, but I’d use the keyword searching with user tags to provide personalized event recommendations. I looked at a number of potential solutions before finding that <a href="https://www.postgresql.org/docs/9.6/static/functions-textsearch.html">Postgres’s natural language processing capabilities</a> would provide the functionality I needed to implement this.
+
+<b>Requirements:</b>
+<ul>
+	<li>Users can add interests (tags) to their profile and to events they manage</li>
+	<li>Keyword searches would search for events from the event tags, title, and description</li>
+	<li>Scalable to millions of events</li>
+	<li>Optimize by query time for searches on the events table</li>
+	<li>Minimize implementation time</li>
+	<li>Minimize added technical complexity</li>
+</ul>
+
+In terms of database architecture I decided on join tables between tags and the users/events tables. I found a number of discussions on the topic on Stackoverflow; you’ll see a number of them <a href="http://stackoverflow.com/questions/234796/optimal-data-architecture-for-tagging-clouds-and-searching-like-stackoverflow">linked to here</a>.
+
+In meeting the rest of the technical requirements, fortunately I did not have to search far. I looked at some gems for tagging and search before finding that Postgres itself was up to the task. For now we have a single database column on events responsible for all keyword searches for events. Further, we can use a <a href="https://www.postgresql.org/docs/9.6/static/functions-trigger.html">trigger function</a> (rather than before_save callback on the Event model) to maintain the column. Whenever an event is saved or updated, the database calls this trigger function to update the tsvector. Together with a <a href="https://www.postgresql.org/docs/9.1/static/textsearch-indexes.html">GIN index</a> our keyword matching algorithm is now scalable to millions of events.
+
+The column we’re generating is a tsvector <data type> containing weighted lexemes representing all the textual information we have on an event. A lexeme is a stemmed version of the original content; for example ‘dance’ is converted into the lexeme ‘danc’, which will also match searches for ‘dancing’. Lexemes generated from the event title are weighted stronger than lexemes from the event description. Thus when we’re searching for events by keyword, we can even rank results by relevance to the original search. PostgreSQL even supports accounting for text length and word density (i.e. ‘cover density’) in calculating the rank for matches.
+
+Our keyword matching is a search scope that takes a single phrase from the user and converts that phrase into a search query. This scope is then chained with other scopes (e.g. location, date) to retrieve events matching all of the given search conditions.
+
+We can also use this scope when a user has saved multiple tags, in the same way as input keywords, to generate event recommendations. At this point we start to run into performance tradeoffs and limitations in Postgres’s text search capabilities. Postgres supports searching for results from multiple phrases at the same time, but in this case it will only return the results without the associated relevance ranking information. We need to be able to sort results by text relevance, or at the very least assign a cutoff level for how closely an event matches with the phrases representing a user’s interests. There are several ways we could approach the problem of ts_rank with multiple phrases, but it remains to be seen how efficient these approaches would be at scale. We may limit searching for events by multiple tags to background tasks for this reason, and focus on improving our search algorithm in other ways.
+
+Next on the todo-list for improving our keyword matching algorithm, we’d like to extend the keyword matching algorithm to also use a synonym dictionary. PostgreSQL language processing supports both synonyms and spell checking, but these require additional setup and add complexity to the algorithm. I hope you’ve enjoyed reading about some of Postgres’s advanced search capabilities. Happy to respond to comments &amp; questions!
+
+Happy Coding,
+
+Bjorn
