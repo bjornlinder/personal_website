@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.3.1'
 
 gem 'sinatra', '~>1.4.4'
-gem 'activerecord'
+gem "activerecord", "< 5.0.0"
 gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'
